@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://bsrr4ckvyvhgp"]
+
+[ext_resource type="PackedScene" uid="uid://dicgqitalo60g" path="res://map.glb" id="1_xl4oy"]
+[ext_resource type="Texture2D" uid="uid://dyv141b0mduh2" path="res://addons/kenney_prototype_textures/dark/texture_07.png" id="2_rjdnt"]
+[ext_resource type="Texture2D" uid="uid://c5q2siimpwybl" path="res://addons/kenney_prototype_textures/dark/texture_09.png" id="3_u5rvo"]
+[ext_resource type="Texture2D" uid="uid://dahxj4hcdh73f" path="res://addons/kenney_prototype_textures/purple/texture_11.png" id="4_r58iu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_voq2s"]
+albedo_texture = ExtResource("2_rjdnt")
+roughness_texture = ExtResource("3_u5rvo")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13lth"]
+albedo_texture = ExtResource("4_r58iu")
+albedo_texture_force_srgb = true
+roughness = 0.28
+uv2_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2f587"]
+albedo_color = Color(0.203922, 0.756863, 0.423529, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_r7fj7"]
+
+[node name="map" instance=ExtResource("1_xl4oy")]
+
+[node name="Plane" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.295166, -0.65209, 7.61476)
+surface_material_override/0 = SubResource("StandardMaterial3D_voq2s")
+surface_material_override/1 = SubResource("StandardMaterial3D_13lth")
+
+[node name="FM-lowpoly" parent="LowPolyGuy-Rig" index="0"]
+transform = Transform3D(1, -5.96046e-08, -5.96046e-08, -8.9407e-08, -4.09782e-08, -1, -2.98023e-08, 1, 2.6077e-08, 1.43739, 0.592986, -0.136099)
+
+[node name="Cone" parent="." index="4"]
+transform = Transform3D(-52.8098, 2.67657, 33.176, 22.4965, 11.1147, -6.55374, -113.753, 0.955505, -16.698, 155.767, 37.8873, 195.008)
+visible = false
+
+[node name="Cylinder" parent="." index="6"]
+transform = Transform3D(8.90781, -26.9353, 39.0011, -45.0988, -17.0268, -1.45864, 14.5839, -36.2011, -28.3325, -46.459, 44.175, 197.991)
+visible = false
+material_override = SubResource("StandardMaterial3D_2f587")
+mesh = SubResource("TorusMesh_r7fj7")
+
+[node name="Players" type="Node3D" parent="." index="7"]

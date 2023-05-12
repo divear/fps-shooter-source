@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dwhv14stt8do4"]
+
+[ext_resource type="Texture2D" uid="uid://byb4ahfqvsmfb" path="res://addons/kenney_particle_pack/circle_03.png" id="1_cd2mo"]
+[ext_resource type="Texture2D" uid="uid://8sxf5awhcrtv" path="res://addons/kenney_particle_pack/magic_05.png" id="2_omme8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tq0v2"]
+radius = 180.0
+
+[node name="JoyStick" type="CanvasLayer"]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(52, 557)
+scale = Vector2(0.527344, 0.527344)
+texture_normal = ExtResource("1_cd2mo")
+shape = SubResource("CircleShape2D_tq0v2")
+
+[node name="smallCirc" type="Sprite2D" parent="TouchScreenButton"]
+position = Vector2(259.792, 246.518)
+scale = Vector2(0.577777, 0.577778)
+texture = ExtResource("2_omme8")

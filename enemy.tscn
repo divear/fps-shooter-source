@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=3 uid="uid://d2x5rnoaa6x8"]
+
+[ext_resource type="Script" path="res://Enemy.gd" id="1_nkhom"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_ixfqe"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_nxnup"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_gko5o"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nmvaj"]
+albedo_color = Color(0.65098, 0, 0, 1)
+albedo_texture = SubResource("ImageTexture_gko5o")
+metallic = 1.0
+
+[node name="Enemy" type="CharacterBody3D"]
+script = ExtResource("1_nkhom")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("SphereShape3D_ixfqe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_nxnup")
+skeleton = NodePath("../CollisionShape3D")
+surface_material_override/0 = SubResource("StandardMaterial3D_nmvaj")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]

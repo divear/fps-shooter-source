@@ -1,0 +1,190 @@
+[gd_scene load_steps=12 format=3 uid="uid://txfdg3x0s0p1"]
+
+[ext_resource type="PackedScene" uid="uid://bsrr4ckvyvhgp" path="res://map.tscn" id="1_43udw"]
+[ext_resource type="Script" path="res://world.gd" id="1_swknb"]
+[ext_resource type="Texture2D" uid="uid://b0y6qifof6amg" path="res://addons/kenney_particle_pack/circle_05.png" id="3_jbclr"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="5_1od0d"]
+[ext_resource type="Texture2D" uid="uid://cx6is0t3qihnh" path="res://join.png" id="5_cwphx"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_vkail"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_u88mh"]
+sky_material = SubResource("ProceduralSkyMaterial_vkail")
+
+[sub_resource type="Environment" id="Environment_0vlow"]
+background_mode = 2
+sky = SubResource("Sky_u88mh")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="Theme" id="Theme_8o0le"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vxf3x"]
+bg_color = Color(0.772549, 0, 0.0509804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nqui6"]
+bg_color = Color(0.0666667, 0.717647, 0.360784, 1)
+
+[node name="World" type="Node"]
+script = ExtResource("1_swknb")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0vlow")
+
+[node name="map" parent="." instance=ExtResource("1_43udw")]
+transform = Transform3D(0.125, 0, 0, 0, 0.125, 0, 0, 0, 0.125, 0.508986, -13.614, 2.17441)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 303.0
+offset_top = 153.0
+offset_right = -303.0
+offset_bottom = -153.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 40
+
+[node name="Label" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Divear's shooter game"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AddressEntry" type="LineEdit" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 70
+placeholder_text = "Write the hosters address here"
+alignment = 1
+clear_button_enabled = true
+
+[node name="Ovladani" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "find more at my site: www.divear.me
+
+
+Controls:
+Right side - camera movement
+Right side click - shoot
+The rest is kinda self explenatory
+Enjoy the game❤️
+
+Ovládání: 
+Pravá strana obrazovky - pohyb kamery
+Kliknutí na pravé straně - vystřelíš
+přeji hodně zábavy❤️
+"
+vertical_alignment = 2
+
+[node name="madein" type="Label" parent="CanvasLayer/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "
+Made in Czechia"
+vertical_alignment = 2
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -91.0
+offset_bottom = -993.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_8o0le")
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 27.0
+offset_top = 8.0
+offset_right = -1398.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_vxf3x")
+theme_override_styles/fill = SubResource("StyleBoxFlat_nqui6")
+max_value = 5.0
+value = 5.0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+offset_top = 92.0
+offset_right = 356.0
+offset_bottom = 401.0
+bbcode_enabled = true
+text = "Adresa: "
+scroll_active = false
+
+[node name="HostButton" type="Button" parent="CanvasLayer"]
+offset_left = 1343.0
+offset_top = 171.0
+offset_right = 1574.0
+offset_bottom = 230.0
+scale = Vector2(1.024, 1.024)
+theme_override_constants/h_separation = 50
+text = "Host"
+expand_icon = true
+
+[node name="JoinButton" type="Button" parent="CanvasLayer"]
+offset_left = 869.0
+offset_top = 449.0
+offset_right = 1513.0
+offset_bottom = 594.0
+theme_override_colors/font_color = Color(0.235294, 0.67451, 0.796078, 1)
+theme_override_font_sizes/font_size = 100
+text = "Join"
+icon = ExtResource("5_cwphx")
+expand_icon = true
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://player.tscn")
+spawn_path = NodePath("..")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 960.0
+offset_top = 540.0
+offset_right = 960.0
+offset_bottom = 540.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.05, 0.05)
+pivot_offset = Vector2(-40, 0)
+texture = ExtResource("3_jbclr")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Node" type="Node" parent="."]
+
+[node name="Virtual Joystick" parent="." instance=ExtResource("5_1od0d")]
+anchors_preset = 0
+anchor_top = 0.0
+anchor_bottom = 0.0
+offset_left = 131.0
+offset_top = 436.0
+offset_right = 329.0
+offset_bottom = 635.0
+grow_vertical = 1
+
+[connection signal="pressed" from="CanvasLayer/HostButton" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/JoinButton" to="." method="_on_join_button_pressed"]
+[connection signal="spawned" from="MultiplayerSpawner" to="." method="_on_multiplayer_spawner_spawned"]
